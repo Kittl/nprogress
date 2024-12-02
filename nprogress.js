@@ -366,9 +366,22 @@
     var pending = [];
 
     function next() {
-      var fn = pending.shift();
-      if (fn) {
-        fn(next);
+      function handleNext() {
+        // take the last added item off the queue
+        var fn = pending.pop();
+        // reset the queue, older entries aren't needed anymore
+        pending = [];
+        if (fn) {
+          fn(next);
+        }
+      }
+
+      if (typeof requestAnimationFrame === 'function') {
+        // throttle the function to be called only once per frame
+        // to avoid css transition flickering
+        requestAnimationFrame(handleNext);
+      } else {
+        handleNext();
       }
     }
 
