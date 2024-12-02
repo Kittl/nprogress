@@ -1,5 +1,5 @@
 {
-  "name": "nprogress",
+  "name": "@kittl/nprogress",
   "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
   "description": "Simple slim progress bars",
   "version": "0.2.0",
